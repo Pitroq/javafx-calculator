@@ -1,0 +1,48 @@
+.root {
+    -fx-font-weight: BOLD;
+    -fx-font-family: "Arial";
+}
+
+.calc-btn {
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+    -fx-font-size: 17px;
+    -fx-background-radius: 15px;
+    -fx-background-color: #282B33;
+    -fx-text-fill: #fff;
+}
+
+.calc-btn:pressed {
+    -fx-background-color: #666;
+}
+
+.long-calc-btn {
+    -fx-pref-width: 115px; // calc-btn width + gap (15)
+}
+
+.special-btn {
+    -fx-text-fill: #60c6b7;
+}
+
+.operator-btn {
+    -fx-text-fill: #D87D81;
+}
+
+#calculator {
+    -fx-background-color: #22252D;
+}
+
+#btns-container {
+    -fx-background-color: #2A2D37;
+    -fx-background-radius: 20 20 0 0;
+}
+
+#math-expression-label {
+    -fx-font-size: 45px;
+    -fx-text-fill: #fff;
+}
+
+#old-math-expression-label {
+    -fx-font-size: 30px;
+    -fx-text-fill: #aaa;
+}
