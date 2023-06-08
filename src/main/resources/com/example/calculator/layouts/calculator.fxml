@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="calculator" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.calculator.CalculatorController">
+<AnchorPane id="calculator" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.calculator.CalculatorController">
    <Label id="old-math-expression-label" fx:id="oldMathExpressionLabel" alignment="CENTER_RIGHT" layoutY="58.0" prefHeight="48.0" prefWidth="300.0">
       <padding>
          <Insets right="20.0" />
       </padding>
+      <tooltip>
+         <Tooltip fx:id="oldMathExpressionTooltip" autoHide="true" opacity="0.9">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Tooltip>
+      </tooltip>
    </Label>
    <Label id="math-expression-label" fx:id="mathExpressionLabel" alignment="CENTER_RIGHT" layoutY="106.0" prefHeight="48.0" prefWidth="300.0">
       <padding>
          <Insets right="20.0" />
       </padding>
+      <tooltip>
+         <Tooltip fx:id="mathExpressionTooltip" autoHide="true" opacity="0.9">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Tooltip>
+      </tooltip>
    </Label>
    <FlowPane id="btns-container" alignment="CENTER" hgap="15.0" layoutY="175.0" prefHeight="375.0" prefWidth="300.0" vgap="15.0">
       <Button mnemonicParsing="false" onAction="#clearAllExpressions" text="AC">

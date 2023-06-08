@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 
 public class CalculatorController {
     private String operator = "";
@@ -11,6 +12,10 @@ public class CalculatorController {
     private Label mathExpressionLabel;
     @FXML
     private Label oldMathExpressionLabel;
+    @FXML
+    private Tooltip mathExpressionTooltip;
+    @FXML
+    private Tooltip oldMathExpressionTooltip;
 
     private String formatDouble(double number) {
         if (number == (int) number) {
@@ -21,9 +26,18 @@ public class CalculatorController {
         }
     }
 
+    private void updateTooltips() {
+        mathExpressionTooltip.setText(mathExpressionLabel.getText());
+        oldMathExpressionTooltip.setText(oldMathExpressionLabel.getText());
+    }
+
     public void addOperatorToExpression(ActionEvent event) {
         String operator = (String) ((Node) event.getSource()).getUserData();
         String currentMathExpression = mathExpressionLabel.getText();
+        if (currentMathExpression.isEmpty() | (!oldMathExpressionLabel.getText().contains("=") & !oldMathExpressionLabel.getText().isEmpty())) {
+            return;
+        }
+
         oldMathExpressionLabel.setText(currentMathExpression);
         this.operator = operator;
         clearExpression();
@@ -34,6 +48,7 @@ public class CalculatorController {
         if (currentMathExpression.contains(".")) return;
 
         mathExpressionLabel.setText(currentMathExpression + ".");
+        updateTooltips();
     }
 
     public void addNegativeToExpression() {
@@ -41,6 +56,7 @@ public class CalculatorController {
         if (currentMathExpression.contains("-")) return;
 
         mathExpressionLabel.setText("-" + currentMathExpression);
+        updateTooltips();
     }
 
     public void addNumberToExpression(ActionEvent event) {
@@ -48,10 +64,12 @@ public class CalculatorController {
         String currentMathExpression = mathExpressionLabel.getText();
 
         mathExpressionLabel.setText(currentMathExpression + number);
+        updateTooltips();
     }
 
     public void clearExpression() {
         mathExpressionLabel.setText("");
+        updateTooltips();
     }
 
     private void clearOldExpression() {
@@ -80,12 +98,14 @@ public class CalculatorController {
                     result = firstExpression / secondExpression;
                 }
             }
-            case "%" -> result = (firstExpression) / 100 * secondExpression;
+            case "%" -> {
+                result = (firstExpression) / 100 * secondExpression;
+                operator = "%x";
+            }
         }
 
         oldMathExpressionLabel.setText(formatDouble(firstExpression) + " " + operator + " " + formatDouble(secondExpression) + " =");
         mathExpressionLabel.setText(formatDouble(result));
+        updateTooltips();
     }
 }
-
-// add hint to labels of hover and then mini info show with full number cause number can be longer than window
